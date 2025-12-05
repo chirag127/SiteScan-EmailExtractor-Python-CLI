@@ -1,0 +1,129 @@
+# 🚀 Contributing to SiteScan-EmailExtractor-Python-CLI
+
+Thank you for considering contributing to **SiteScan-EmailExtractor-Python-CLI**! We welcome your contributions to help improve this powerful Python CLI tool for extracting emails and URLs from websites.
+
+## 1. Our Guiding Principles
+
+This project adheres to the **Apex Technical Authority** standards, prioritizing:
+
+*   **Zero-Defect:** Aim for high quality and minimal bugs.
+*   **High-Velocity:** Streamline development and contribution processes.
+*   **Future-Proof:** Build with maintainability and scalability in mind.
+*   **Professionalism:** Maintain a clean, well-documented, and robust codebase.
+
+## 2. Getting Started
+
+### 2.1 Prerequisites
+
+Ensure you have the following installed:
+
+*   **Python:** Version 3.10+ (as per Apex standards for Python projects).
+*   **uv:** The recommended package manager for Python. If you don't have it, install it via pip: `pip install uv`.
+*   **Git:** For version control.
+
+### 2.2 Setup
+
+1.  **Fork the Repository:** Create your own fork of the repository on GitHub.
+    `https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/fork`
+
+2.  **Clone Your Fork:** Clone your forked repository to your local machine.
+    bash
+    git clone https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI.git
+    cd SiteScan-EmailExtractor-Python-CLI
+    
+
+3.  **Set Upstream Remote:** Configure your local repository to track the original `chirag127` repository.
+    bash
+    git remote add upstream https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI.git
+    
+
+4.  **Install Dependencies:** Use `uv` to install project dependencies and set up the development environment.
+    bash
+    uv venv  # Creates a virtual environment
+    uv pip install -e "[dev]" # Installs project in editable mode with dev dependencies
+    # OR if you prefer a clean install into the venv:
+    # uv pip install -r requirements.txt
+    # uv pip install -r requirements_dev.txt
+    
+
+## 3. Development Workflow
+
+Follow these steps for making changes:
+
+1.  **Create a New Branch:** Always work on a new, descriptive branch for your feature or bug fix.
+    bash
+    git checkout -b my-new-feature
+    # or for a bug fix:
+    # git checkout -b fix/bug-description
+    
+
+2.  **Make Your Changes:** Implement your code, adhering to the project's coding standards and architectural patterns.
+
+3.  **Test Your Changes:** Ensure your changes are well-tested. Run the test suite using `pytest`.
+    bash
+    pytest
+    
+    Aim for comprehensive test coverage.
+
+4.  **Lint and Format:** Ensure your code adheres to our linting and formatting standards using Ruff.
+    bash
+    ruff check .
+    ruff format .
+    
+    Your code should pass these checks without errors or warnings.
+
+5.  **Commit Your Changes:** Make clear, concise, and atomic commits.
+    bash
+    git add .
+    git commit -m "feat: Add recursive crawling depth option"
+    # or for a bug fix:
+    # git commit -m "fix: Resolve issue with malformed URLs during parsing"
+    
+
+6.  **Push Your Branch:** Push your changes to your fork.
+    bash
+    git push origin my-new-feature
+    
+
+7.  **Open a Pull Request (PR):** Create a PR from your branch to the `main` branch of the `chirag127/SiteScan-EmailExtractor-Python-CLI` repository.
+
+## 4. Contribution Guidelines
+
+*   **Code Style:** Adhere to PEP 8 standards, with Ruff enforcing specific configurations.
+*   **Testing:** All new features must include corresponding unit or integration tests. Bug fixes should include tests that reproduce the bug.
+*   **Documentation:** Update relevant documentation (e.g., README, docstrings) for any significant changes.
+*   **Pull Requests:**
+    *   Keep PRs focused on a single feature or bug fix.
+    *   Provide a clear description of your changes and the problem they solve.
+    *   Respond promptly to review feedback.
+*   **Commit Messages:** Follow the Conventional Commits specification (e.g., `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`).
+
+## 5. Architectural Principles (Apex Standards)
+
+*   **Modularity:** Design components for reusability and separation of concerns.
+*   **DRY (Don't Repeat Yourself):** Avoid redundant code.
+*   **SOLID Principles:** Adhere to the SOLID principles where applicable.
+*   **Pythonic Code:** Write idiomatic Python.
+
+## 6. Reporting Issues
+
+Before opening a new issue, please check if a similar issue already exists. When reporting a bug, please provide:
+
+*   A clear, descriptive title.
+*   The version of the tool you are using.
+*   Steps to reproduce the bug.
+*   Expected behavior vs. actual behavior.
+*   Any relevant error messages or logs.
+*   The environment (OS, Python version).
+
+## 7. Code of Conduct
+
+This project adheres to a Code of Conduct. By participating, you are expected to uphold this code. Please refer to the `CODE_OF_CONDUCT.md` file for details (Note: This file is not generated by this tool but is a standard part of professional repositories).
+
+## 8. Security
+
+If you discover any security vulnerabilities, please report them responsibly through the appropriate channels, as outlined in the `SECURITY.md` file.
+
+---
+
+*Last Updated: December 2025*
