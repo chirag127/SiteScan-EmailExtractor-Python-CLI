@@ -1,0 +1,23 @@
+---
+badges:
+  - name: Build Status
+    image: https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/actions/workflows/ci.yml/badge.svg
+    link: https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/actions/workflows/ci.yml
+  - name: Code Coverage
+    image: https://codecov.io/gh/chirag127/SiteScan-EmailExtractor-Python-CLI/branch/main/graphs/badge.svg
+    link: https://codecov.io/gh/chirag127/SiteScan-EmailExtractor-Python-CLI
+  - name: Python Version
+    image: https://img.shields.io/badge/python-3.10+-blue.svg
+    link: https://www.python.org/
+  - name: Linting (Ruff)
+    image: https://img.shields.io/badge/linting-ruff-008000?style=flat-square
+    link: https://github.com/astral-sh/ruff
+  - name: Testing (Pytest)
+    image: https://img.shields.io/badge/testing-pytest-007acc?style=flat-square
+    link: https://pytest.org/
+  - name: License
+    image: https://img.shields.io/badge/license-CC%20BY--NC%204.0-orange.svg?style=flat-square
+    link: https://creativecommons.org/licenses/by-nc/4.0/
+  - name: GitHub Stars
+    image: https://img.shields.io/github/stars/chirag127/SiteScan-EmailExtractor-Python-CLI?style=flat-square
+    link: https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/stargazers
