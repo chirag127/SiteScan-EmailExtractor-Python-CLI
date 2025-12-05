@@ -1,0 +1,62 @@
+name: CI
+
+# Trigger the workflow on push events for the main branch and on pull requests
+# targeting the main branch. Also allows manual triggering.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  build:
+    # Use the latest Ubuntu LTS as the runner environment
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python environment using uv
+      # This step ensures the correct Python version is available and installs dependencies.
+      - name: Set up Python with uv
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Specify the Python version as per Apex Stack directives
+          cache: 'uv' # Enable uv caching for faster dependency installation
+
+      - name: Install Dependencies with uv
+        run: | # Use a multi-line script to install dependencies
+          python -m uv --no-lock
+          python -m uv pip install --frozen requirements.txt # Install from requirements.txt, assuming it exists
+          # If a pyproject.toml is present and used, the command might be different, e.g.:
+          # python -m uv pip install -e .[dev] # Install in editable mode with dev dependencies
+
+      # Step 3: Run Ruff for linting and formatting checks
+      # Ruff is mandated by the Apex Stack for its speed and comprehensive checks.
+      - name: Lint with Ruff
+        run: |
+          # Run Ruff for linting and formatting checks. The --check flag ensures it fails the build if issues are found.
+          python -m ruff check .
+          python -m ruff format --check .
+
+      # Step 4: Run Pytest for unit and integration tests
+      # Pytest is the mandated testing framework for Python projects.
+      - name: Test with Pytest
+        run: |
+          # Execute tests using pytest. The '-v' flag provides verbose output.
+          # Assuming tests are located in a 'tests/' directory or discoverable by pytest.
+          python -m pytest -v
+
+      # Step 5: (Optional) Upload coverage reports if coverage is generated
+      # This step is conditional and assumes coverage is collected during the pytest run.
+      # Requires a codecov.yml or similar configuration in the repository.
+      - name: Upload Coverage to Codecov
+        if: success() # Only run if previous steps were successful
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # Use Codecov token from GitHub secrets
+          files: ./coverage.xml # Path to the coverage report file (adjust if needed)
+          fail_ci_if_error: true # Fail the CI job if Codecov upload fails
