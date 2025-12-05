@@ -1,7 +1,38 @@
-*.*[#~]
+# Python virtual environment
+__pycache__/
 *.pyc
-push.sh
-disqus_jnlp.html.rst
-build
-dist
-*egg*
+*.pyo
+*.pyd
+
+# IDE and editor folders
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+*.coverage
+htmlcov/
+
+# Linters and formatters
+.ruff_cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Secrets and sensitive information
+.env
+*.local
+
+# Package management (uv)
+.uv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
