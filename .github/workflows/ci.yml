@@ -1,62 +1,66 @@
 name: CI
 
-# Trigger the workflow on push events for the main branch and on pull requests
-# targeting the main branch. Also allows manual triggering.
+# Control when the action will run.
+# Triggers the workflow on push or pull request events for the main branch.
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch: # Allows manual triggering
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-    # Use the latest Ubuntu LTS as the runner environment
+  # This job builds, tests, and analyzes the code.
+  build_and_test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+
     steps:
-      # Step 1: Check out the repository code
-      - name: Checkout Code
+      # Checks-out your repository into the way the GitHub Actions runner can access it.
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Python environment using uv
-      # This step ensures the correct Python version is available and installs dependencies.
-      - name: Set up Python with uv
+      # Set up Python environment
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Specify the Python version as per Apex Stack directives
-          cache: 'uv' # Enable uv caching for faster dependency installation
+          python-version: ${{ matrix.python-version }}
+          cache: 'uv'
 
+      # Install dependencies using uv
       - name: Install Dependencies with uv
-        run: | # Use a multi-line script to install dependencies
-          python -m uv --no-lock
-          python -m uv pip install --frozen requirements.txt # Install from requirements.txt, assuming it exists
-          # If a pyproject.toml is present and used, the command might be different, e.g.:
-          # python -m uv pip install -e .[dev] # Install in editable mode with dev dependencies
+        run: |
+          uv --version
+          uv pip install --system --upgrade pip
+          uv pip install --system "ruff"
+          uv pip install --system "pytest"
+          uv pip install --system ".[dev]"
+        # Note: If your project has a specific install command for development dependencies (e.g., `pip install -e .[dev]`), adjust accordingly.
+        # The example assumes `pyproject.toml` defines an optional dependency group `[project.optional-dependencies.dev]`.
 
-      # Step 3: Run Ruff for linting and formatting checks
-      # Ruff is mandated by the Apex Stack for its speed and comprehensive checks.
+      # Run Ruff for linting and formatting
       - name: Lint with Ruff
-        run: |
-          # Run Ruff for linting and formatting checks. The --check flag ensures it fails the build if issues are found.
-          python -m ruff check .
-          python -m ruff format --check .
+        run: ruff check . --output-format github
+        # If you want to also format, uncomment the next line and ensure ruff is configured for it.
+        # run: ruff check --fix . --output-format github
 
-      # Step 4: Run Pytest for unit and integration tests
-      # Pytest is the mandated testing framework for Python projects.
+      # Run Pytest for testing
       - name: Test with Pytest
-        run: |
-          # Execute tests using pytest. The '-v' flag provides verbose output.
-          # Assuming tests are located in a 'tests/' directory or discoverable by pytest.
-          python -m pytest -v
+        run: pytest
+        # If you need coverage, you would typically install a coverage tool and configure pytest-cov:
+        # env:
+        #   PYTHON_COLORS: "true"
+        # run: pytest --cov=aqua_scout --cov-report=xml
+        # Then, upload coverage to a service like Codecov:
+        # - name: Upload coverage to Codecov
+        #   uses: codecov/codecov-action@v4
+        #   with:
+        #     token: ${{ secrets.CODECOV_TOKEN }}
+        #     file: ./coverage.xml
 
-      # Step 5: (Optional) Upload coverage reports if coverage is generated
-      # This step is conditional and assumes coverage is collected during the pytest run.
-      # Requires a codecov.yml or similar configuration in the repository.
-      - name: Upload Coverage to Codecov
-        if: success() # Only run if previous steps were successful
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # Use Codecov token from GitHub secrets
-          files: ./coverage.xml # Path to the coverage report file (adjust if needed)
-          fail_ci_if_error: true # Fail the CI job if Codecov upload fails
+      # Optional: Build the CLI if applicable (e.g., using Poetry build or similar)
+      # - name: Build Distribution
+      #   run: poetry build
