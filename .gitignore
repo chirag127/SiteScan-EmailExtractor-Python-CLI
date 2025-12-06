@@ -1,38 +1,48 @@
-# Python virtual environment
+# Python virtual environments and build artifacts
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# IDE and editor folders
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
-
-# Build artifacts
 build/
 dist/
 *.egg-info/
+venv/
+env/
+.venv/
+*.venv/
 
-# Testing
-.pytest_cache/
-*.coverage
-htmlcov/
-
-# Linters and formatters
-.ruff_cache/
+# IDE and editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # OS generated files
 .DS_Store
 Thumbs.db
 
-# Secrets and sensitive information
-.env
-*.local
+# Test artifacts
+.pytest_cache/
+htmlcov/
+coverage.xml
 
-# Package management (uv)
+# Ruff cache
+.ruff_cache/
+
+# uv cache
 .uv/
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
+# Secrets and credentials (example - add specific files if needed)
+*.env
+credentials.json
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Specific to web scraping/crawling if needed (e.g., downloaded files)
+# downloaded_data/
+# output_emails.txt
+# output_urls.txt
