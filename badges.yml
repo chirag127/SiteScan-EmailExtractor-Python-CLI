@@ -1,23 +1,33 @@
----
+# This file contains the configuration for the badges displayed in the README.
+# It is automatically generated and managed.
+
 badges:
   - name: Build Status
-    image: https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/actions/workflows/ci.yml/badge.svg
-    link: https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/actions/workflows/ci.yml
+    image_url: https://github.com/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/actions/workflows/ci.yml/badge.svg
+    link_url: https://github.com/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/actions/workflows/ci.yml
+    markdown: [![Build Status](https://github.com/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/actions/workflows/ci.yml/badge.svg)](https://github.com/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/actions/workflows/ci.yml)
+
   - name: Code Coverage
-    image: https://codecov.io/gh/chirag127/SiteScan-EmailExtractor-Python-CLI/branch/main/graphs/badge.svg
-    link: https://codecov.io/gh/chirag127/SiteScan-EmailExtractor-Python-CLI
-  - name: Python Version
-    image: https://img.shields.io/badge/python-3.10+-blue.svg
-    link: https://www.python.org/
-  - name: Linting (Ruff)
-    image: https://img.shields.io/badge/linting-ruff-008000?style=flat-square
-    link: https://github.com/astral-sh/ruff
-  - name: Testing (Pytest)
-    image: https://img.shields.io/badge/testing-pytest-007acc?style=flat-square
-    link: https://pytest.org/
-  - name: License
-    image: https://img.shields.io/badge/license-CC%20BY--NC%204.0-orange.svg?style=flat-square
-    link: https://creativecommons.org/licenses/by-nc/4.0/
+    image_url: https://codecov.io/gh/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/branch/main/graph/badge.svg?style=flat-square
+    link_url: https://codecov.io/gh/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool
+    markdown: [![Code Coverage](https://codecov.io/gh/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/branch/main/graph/badge.svg?style=flat-square)](https://codecov.io/gh/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool)
+
+  - name: Language - Python
+    image_url: https://img.shields.io/badge/Language-Python-blue.svg?style=flat-square
+    link_url: https://www.python.org
+    markdown: [![Language - Python](https://img.shields.io/badge/Language-Python-blue.svg?style=flat-square)](https://www.python.org)
+
+  - name: Linter - Ruff
+    image_url: https://img.shields.io/badge/Linter-Ruff-blueviolet?style=flat-square
+    link_url: https://github.com/charliermarsh/ruff
+    markdown: [![Linter - Ruff](https://img.shields.io/badge/Linter-Ruff-blueviolet?style=flat-square)](https://github.com/charliermarsh/ruff)
+
+  - name: License - CC BY-NC 4.0
+    image_url: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square
+    link_url: https://creativecommons.org/licenses/by-nc/4.0/
+    markdown: [![License - CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc/4.0/)
+
   - name: GitHub Stars
-    image: https://img.shields.io/github/stars/chirag127/SiteScan-EmailExtractor-Python-CLI?style=flat-square
-    link: https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI/stargazers
+    image_url: https://img.shields.io/github/stars/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool?style=flat-square
+    link_url: https://github.com/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/stargazers
+    markdown: [![GitHub Stars](https://img.shields.io/github/stars/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool?style=flat-square)](https://github.com/chirag127/AquaScout-Web-Email-Extractor-CLI-Tool/stargazers)
