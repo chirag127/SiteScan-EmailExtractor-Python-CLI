@@ -1,37 +1,49 @@
-# Security Policy
+# Security Policy for AquaScout-Web-Email-Extractor-CLI-Tool
 
-## Supported Versions
+As the Apex Technical Authority, we treat security with the highest priority. This repository, **AquaScout-Web-Email-Extractor-CLI-Tool**, is designed for robust, controlled data extraction tasks. We maintain future-proof standards based on the wisdom of Managing the Unmanageable.
 
-We actively support and provide security updates for the latest version of `SiteScan-EmailExtractor-Python-CLI` available on the `main` branch.
+## 1. Supported Versions
 
-## Reporting a Vulnerability
+We actively support the latest stable release branch of Python (currently **Python 3.12+** per late 2025 standards) and all directly dependent packages managed via `uv`.
 
-We take security seriously. If you discover any security issues or vulnerabilities in `SiteScan-EmailExtractor-Python-CLI`, please report them following these steps:
+| Version | Status | Deployment Target |
+| :--- | :--- | :--- |
+| Latest Stable | Supported | Deployed/Tested |
+| N/A (Legacy) | Security Fixes Only | Next Major Release Removal |
 
-1.  **DO NOT** disclose the vulnerability publicly. 
-2.  Send a detailed email to `chirag.127@gmail.com` with the subject line "Security Vulnerability Report - SiteScan-EmailExtractor-Python-CLI".
-3.  Include as much information as possible about the vulnerability:
-    *   A clear description of the issue.
-    *   Affected version(s) (e.g., `main` branch).
-    *   Steps to reproduce the vulnerability.
-    *   Any potential impact or proof-of-concept (PoC) if available.
-    *   Your suggested mitigation or fix, if any.
+## 2. Reporting a Vulnerability
 
-We will acknowledge your report within **48 hours** and aim to provide a response and potential patch timeline within **7 days**.
+We adhere to a strict, rapid response protocol for security disclosures. If you discover any vulnerability in **AquaScout-Web-Email-Extractor-CLI-Tool**, please follow these steps immediately:
 
-We appreciate your responsible disclosure and helping us maintain the security of `SiteScan-EmailExtractor-Python-CLI`.
+1.  **DO NOT** open a public issue. Unauthorized disclosure compromises the integrity of our users.
+2.  **Private Disclosure:** Send a detailed, encrypted report (if possible) directly to the security contact: `security+aquascout@chirag127.com` (Placeholder email; actual security contact procedures should be established).
+3.  **Content:** Your report must include:
+    *   A clear description of the vulnerability.
+    *   Steps to reproduce (PoC).
+    *   The affected component (e.g., `urllib3` dependency, core parsing logic).
+    *   Your contact information (optional, but recommended for follow-up).
 
-## Security Practices
+## 3. Disclosure Timeline & Remediation
 
-`SiteScan-EmailExtractor-Python-CLI` is committed to security best practices. This includes:
+Upon receipt of a valid security report, the Apex Team commits to the following timeline:
 
-*   **Dependency Scanning:** Regularly scanning dependencies for known vulnerabilities using `uv` and `Ruff` integration.
-*   **Code Reviews:** All code changes undergo rigorous peer review before merging.
-*   **Static Analysis:** Employing `Ruff` for comprehensive static analysis to catch potential security flaws.
-*   **Testing:** Maintaining a robust test suite with `Pytest` to ensure code integrity and prevent regressions.
-*   **Secure Defaults:** Prioritizing secure defaults in the implementation of the CLI and its functionalities.
-*   **Limited External Dependencies:** Carefully evaluating the necessity and security posture of all third-party libraries.
+| Action | Target SLA | Notes |
+| :--- | :--- | :--- |
+| Acknowledge Receipt | Within 12 Hours | Confirmation of receipt and initial triage. |
+| Initial Assessment | Within 48 Hours | Determining severity and scope. |
+| Fix Development | TBD based on severity (Max 7 Days) | Applying patches adhering to SOLID/DRY principles. |
+| Private Patch Release | Before Public Disclosure | Deploying fix internally for final verification. |
+| Public Disclosure | Coordinated with Fix Release | Issuing an advisory and releasing the patched version via GitHub and PyPI. |
 
-This policy is aligned with the Apex Technical Authority's principles for building robust, secure, and production-ready software.
+## 4. Security Best Practices in Development
 
-**Repository Link:** [https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI](https://github.com/chirag127/SiteScan-EmailExtractor-Python-CLI)
+Our Python development adheres to rigorous standards defined in our **AGENTS.md** directives:
+
+*   **Dependency Management:** All dependencies are managed via `uv` and scanned using industry-standard SCA tools integrated into our **CI/CD pipeline (`.github/workflows/ci.yml`)**.
+*   **Input Sanitization:** Because this is a web crawler, all scraped data is treated as untrusted input. Data handlers strictly use **Ruff** rules to enforce safe string handling and prevent injection vectors, even if the primary use case is output logging.
+*   **Secrets Management:** No secrets (API keys, tokens) are ever committed to the repository. All required credentials for external services (e.g., hosting platforms, advanced AI services) must be injected via secure GitHub Actions secrets or environment variables.
+*   **Configuration Integrity:** Configuration files are validated against a strict schema (`click` validation layers) to ensure the integrity of operational parameters, preventing misconfigurations that could lead to Denial of Service or over-crawling.
+
+--- 
+
+*This security policy is maintained under the governance model established by the Apex Technical Authority.*
